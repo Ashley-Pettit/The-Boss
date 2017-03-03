@@ -2,7 +2,7 @@
 
 To run the program just visit the site
 
-http://ashley-pettit.github.io/TicTacToe/
+ https://ashley-pettit.github.io/The-Boss/
 
 **The original Tic Tac Toe game bought back to life.**
 
