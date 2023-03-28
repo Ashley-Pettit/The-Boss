@@ -478,22 +478,22 @@ function stealCell(playType) {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
-  if (((app.turn > 2) && app.turn < 80) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 3) && app.turn < 90) && feelLikeCheating(.90)) {
+  if ((app.isRoundInProgress === true) {
+    if (isComputerAbleToWin() && feelLikeCheating(.30)) {
       app.turn++
       playToWin();
-      console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play. 90");
+      console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play. 30");
       return;
     }
     else if (doesComputerNeedToBlock()) {
-      console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
-      if (isComputerAbleToWin() && feelLikeCheating(.80)){
+      console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased. Boo', 'color: red')
+      if (isComputerAbleToWin() && feelLikeCheating(.60)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win. 80");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.95)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.99)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win. 95");
         return;
@@ -536,17 +536,18 @@ function completelyCheatIfHumanCanWin() {
 function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
-    // console.log("Rolling for cheat. Success! ", value, chance)
+    console.log("Rolling for cheat. Success! ", value, chance)
     return true
   }
   else {
-    // console.log("Rolling for cheat. Gah...! ", value, chance)
+     console.log("Rolling for cheat. Gah...! ", value, chance)
     return false
   }
 }
 
 function weightedPlay(chance){
   value =  Math.random().toFixed(2);
+  c
   if (value < chance) {
     return true
   }
