@@ -547,7 +547,6 @@ function feelLikeCheating(chance) {
 
 function weightedPlay(chance){
   value =  Math.random().toFixed(2);
-  c
   if (value < chance) {
     return true
   }
