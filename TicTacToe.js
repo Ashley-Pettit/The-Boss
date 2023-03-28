@@ -478,13 +478,14 @@ function stealCell(playType) {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
-  if (((app.turn > 2) && app.turn < 100) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 2) && app.turn < 100) && feelLikeCheating(.99)) {
-      app.turn++
-      playToWin();
-      console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
-      return;
-    }
+  if (app.isRoundInProgress === true) {
+    if (feelLikeCheating(.99)
+      if isComputerAbleToWin() ) {
+       app.turn++
+       playToWin();
+       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
+        return;
+      }
     else if (doesComputerNeedToBlock()) {
       console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
       if (isComputerAbleToWin() && feelLikeCheating(.85)){
