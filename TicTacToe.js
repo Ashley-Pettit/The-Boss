@@ -512,6 +512,7 @@ function cheatingMoves() {
 }
 
 function cheatOnDraw() {
+
   if (checkForDraw() && app.round > 6 && feelLikeCheating(.35)) {
     for (var i = 0; i < 9; i++) {
       gameBoard[i] = 'X';
