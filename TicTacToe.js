@@ -488,7 +488,7 @@ function cheatingMoves() {
         return;
       }
     else if (doesComputerNeedToBlock()) {
-      console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
+      console.log('%cWARNING - 2! way win detected. Cheating odds have been drastically increased.', 'color: red')
       if (isComputerAbleToWin() && feelLikeCheating(.85)){
         app.turn++
         playToWin();
