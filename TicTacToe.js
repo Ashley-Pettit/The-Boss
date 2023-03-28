@@ -478,8 +478,8 @@ function stealCell(playType) {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
-  if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(.17)) {
+  if (((app.turn > 2) && app.turn < 100) && app.isRoundInProgress === true) {
+    if (isComputerAbleToWin() && ((app.turn > 3) && app.turn < 100) && feelLikeCheating(.28)) {
       app.turn++
       playToWin();
       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
@@ -487,18 +487,18 @@ function cheatingMoves() {
     }
     else if (doesComputerNeedToBlock()) {
       console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
-      if (isComputerAbleToWin() && feelLikeCheating(.80)){
+      if (isComputerAbleToWin() && feelLikeCheating(.85)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.85)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.90)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
       }
-      else if (doesComputerNeedToBlock() && feelLikeCheating(.25)) {
+      else if (doesComputerNeedToBlock() && feelLikeCheating(.55)) {
         app.turn++;
         app.currentPlayer = 'X'
         playToBlock(); //If unable to instantly win then block the two win scenarios.
