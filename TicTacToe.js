@@ -51,7 +51,7 @@ app.hasBlocked = null;
 function countdownAnimation() {
   $('.game_in_play').fadeIn();
   $('.game_control').fadeOut(500);
-  var countDownFrom = 4;
+  var countDownFrom = 2;
   setTimeout(function(){
     $('#countdown').delay(500).text("5...").fadeIn(500).fadeOut(500);
     var countDown = setInterval(function() {
