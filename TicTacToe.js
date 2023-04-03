@@ -539,11 +539,11 @@ function completelyCheatIfHumanCanWin() {
 function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
-     console.log("Rolling for cheat. Success! ", value, chance)
+    // console.log("Rolling for cheat. Success! ", value, chance)
     return true
   }
   else {
-     console.log("Rolling for cheat. Gah...! ", value, chance)
+    // console.log("Rolling for cheat. Gah...! ", value, chance)
     return false
   }
 }
