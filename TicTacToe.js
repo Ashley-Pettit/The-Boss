@@ -1,4 +1,4 @@
-var cheat_amount_double_play = .35
+var cheat_amount_double_play = .30
 var cheat_amount_steal_cell = .25
 
 $(document).ready(function() {
@@ -231,7 +231,6 @@ function roundDrew() {
   endRound();
 }
 
-
 function launchWin() {
   $('#starting_player_is').text(app.currentPlayer + " Takes The Round!").fadeIn(100);
   updateScore();
@@ -240,7 +239,6 @@ function launchWin() {
     $("#" + winningCells[i]).css("background-color", "red");
   }
 }
-
 
 function endRound() {
   app.isRoundInProgress = false;
@@ -270,7 +268,6 @@ function AIPlay() {
   }
   app.turn++;
 }
-
 
 function isComputerAbleToWin() {
   //The computer plays in any open cell. It then checks if that cell will cause it to win.
@@ -362,7 +359,6 @@ function AIIntermediate() {
   }
 }
 
-
 function AIHardDefending() {
   //This is loaded when the computer plays 2nd. The computer is aiming to draw.
   if (isComputerAbleToWin()) {
@@ -416,11 +412,12 @@ function playToBlock() {
 function AICheater() {
   app.currentPlayer = 'X'
   app.blockThisTurn = 0
+  var increasing_cheat_amount_steal_cell = cheat_amount_steal_cell + (app.round*5/100)
   if (isComputerAbleToWin()) {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(cheat_amount_steal_cell)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(increasing_cheat_amount_steal_cell)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
@@ -474,8 +471,9 @@ function stealCell(playType) {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
+  var increasing_cheat_amount_double_play = cheat_amount_double_play + (app.round*5/100)
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
+    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(increasing_cheat_amount_double_play)) {
       app.turn++
       playToWin();
       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
