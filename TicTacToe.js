@@ -31,7 +31,7 @@ $(document).ready(function() {
   $('#home').click(function() {
       location.reload();
   });
-  console.log('%cWelcome to Ash\'s TicTacToe! ', 'color: red');
+  console.log('%cWelcome to Ash\'s TicTacToe v1.2! ', 'color: red');
 });
 
 
