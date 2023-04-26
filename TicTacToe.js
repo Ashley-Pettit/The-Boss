@@ -544,6 +544,7 @@ function feelLikeCheating(chance) {
 function weightedPlay(chance){
   value =  Math.random().toFixed(2);
   if (value < chance) {
+      console.log("Successful weighted play. Rolled " + value + ". Required was less than " + chance + ".")
     return true
   }
   else {
