@@ -479,7 +479,7 @@ function stealCell(playType) {
 function cheatingMoves() {
   app.currentPlayer = 'X'
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(.15)) {
+    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(.25)) {
       app.turn++
       playToWin();
       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
@@ -493,12 +493,12 @@ function cheatingMoves() {
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.80)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.98)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
       }
-      else if (doesComputerNeedToBlock() && feelLikeCheating(.25)) {
+      else if (doesComputerNeedToBlock() && feelLikeCheating(.55)) {
         app.turn++;
         app.currentPlayer = 'X'
         playToBlock(); //If unable to instantly win then block the two win scenarios.
@@ -510,7 +510,7 @@ function cheatingMoves() {
 }
 
 function cheatOnDraw() {
-  if (checkForDraw() && app.round > 5 && feelLikeCheating(.35)) {
+  if (checkForDraw() && app.round > 6 && feelLikeCheating(.50)) {
     for (var i = 0; i < 9; i++) {
       gameBoard[i] = 'X';
       $('#' + i).text('X');
