@@ -417,7 +417,7 @@ function AICheater() {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(.30)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(.35)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
@@ -480,18 +480,18 @@ function cheatingMoves() {
     }
     else if (doesComputerNeedToBlock()) {
       console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
-      if (isComputerAbleToWin() && feelLikeCheating(.75)){
+      if (isComputerAbleToWin() && feelLikeCheating(.60)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.98)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.99)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
       }
-      else if (doesComputerNeedToBlock() && feelLikeCheating(.55)) {
+      else if (doesComputerNeedToBlock() && feelLikeCheating(.70)) {
         app.turn++;
         app.currentPlayer = 'X'
         playToBlock(); //If unable to instantly win then block the two win scenarios.
