@@ -31,7 +31,7 @@ $(document).ready(function() {
   $('#home').click(function() {
       location.reload();
   });
-  console.log('%cWelcome to Ash\'s TicTacToe v1.3! ', 'color: red');
+  console.log('%cWelcome to Ash\'s TicTacToe v1.4! ', 'color: red');
 });
 
 
@@ -529,11 +529,11 @@ function completelyCheatIfHumanCanWin() {
 function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
-    console.log("Successful cheat roll. Rolled " value ". Required was <" chance)
+    console.log("Successful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
     return true
   }
   else {
-    console.log("Unsuccessful cheat roll. Rolled " value ". Required was <" chance)
+    console.log("Unsuccessful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
     return false
   }
 }
