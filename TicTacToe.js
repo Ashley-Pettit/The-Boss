@@ -462,13 +462,6 @@ function stealCell(playType) {
     gameBoard[app.cheatBlockAt] = null;
     $('#' + app.cheatBlockAt).text('');
   }
-  // for (var y = 0; y < 9; y++) {
-  //   if (gameBoard[y] == null && app.round > 4 && app.turn > 5)  {
-  //     $("#" + y).text("O");
-  //     console.log("Adding player token to cell " + y + " to add confusion" )
-  //     break
-  //   }
-  // } // Add in a mystery player token so it doesn't look suss
   for (var i = 0; i < 3; i++) {
     $("#" + winningCells[i]).css("background-color", "red");
     $("#" + winningCells[i]).text("X");
