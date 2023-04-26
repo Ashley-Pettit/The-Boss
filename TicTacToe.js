@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
   gameBoard = setUpBoard();
   $('.difficulty_button').click(function(e) {
@@ -418,7 +417,7 @@ function AICheater() {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(.15)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(.12)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
@@ -479,28 +478,27 @@ function stealCell(playType) {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
-  if (app.isRoundInProgress === true) {
-    if (feelLikeCheating(.99)
-      if isComputerAbleToWin() ) {
-       app.turn++
-       playToWin();
-       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
-        return;
-      }
+  if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
+    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(.15)) {
+      app.turn++
+      playToWin();
+      console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
+      return;
+    }
     else if (doesComputerNeedToBlock()) {
       console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
-      if (isComputerAbleToWin() && feelLikeCheating(.85)){
+      if (isComputerAbleToWin() && feelLikeCheating(.75)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.90)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.80)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
       }
-      else if (doesComputerNeedToBlock() && feelLikeCheating(.55)) {
+      else if (doesComputerNeedToBlock() && feelLikeCheating(.25)) {
         app.turn++;
         app.currentPlayer = 'X'
         playToBlock(); //If unable to instantly win then block the two win scenarios.
@@ -512,8 +510,7 @@ function cheatingMoves() {
 }
 
 function cheatOnDraw() {
-
-  if (checkForDraw() && app.round > 6 && feelLikeCheating(.35)) {
+  if (checkForDraw() && app.round > 5 && feelLikeCheating(.35)) {
     for (var i = 0; i < 9; i++) {
       gameBoard[i] = 'X';
       $('#' + i).text('X');
