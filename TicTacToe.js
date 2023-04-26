@@ -479,7 +479,7 @@ function stealCell(playType) {
 function cheatingMoves() {
   app.currentPlayer = 'X'
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(.30)) {
+    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(.35)) {
       app.turn++
       playToWin();
       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
@@ -536,11 +536,11 @@ function completelyCheatIfHumanCanWin() {
 function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
-    console.log("Rolling for cheat. Success! ", value, chance)
+    console.log("Successful cheat roll. Rolled " value ". Required was <" chance)
     return true
   }
   else {
-    console.log("Rolling for cheat. Gah...! ", value, chance)
+    console.log("Unsuccessful cheat roll. Rolled " value ". Required was <" chance)
     return false
   }
 }
