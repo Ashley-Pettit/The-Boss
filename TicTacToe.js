@@ -478,7 +478,6 @@ function cheatingMoves() {
      console.log("Double play cheat amount increased to " + increasing_cheat_amount_double_play)
    }
   app.currentPlayer = 'X'
-  console.log("Double play cheat amount increased to " + increasing_cheat_amount_double_play)
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
     if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(increasing_cheat_amount_double_play)) {
       app.turn++
