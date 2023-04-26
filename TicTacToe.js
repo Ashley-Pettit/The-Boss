@@ -34,7 +34,7 @@ $(document).ready(function() {
   $('#home').click(function() {
       location.reload();
   });
-  console.log('%cWelcome to Ash\'s TicTacToe v1.5! ', 'color: red');
+  console.log('%cWelcome to Ash\'s TicTacToe. Cheating enabled. Double play ' + cheat_amount_double_play + ". Steal Cell " + cheat_amount_steal_cell, 'color: red');
 });
 
 
