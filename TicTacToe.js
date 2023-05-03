@@ -425,13 +425,16 @@ function AICheater() {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
-  if (cheat_amount_double_play > .60) {
+  if (cheat_amount_double_play < .60) {
     var cheat_amount_double_play = cheat_amount_double_play + 0.1
     var cheat_amount_steal_cell = cheat_amount_steal_cell + 0.1
     console.log("Cheating amount increased to " + cheat_amount_double_play + " " + cheat_amount_steal_cell);
   }
-  else {
+  else if (cheat_amount_double_play => .60) {
         console.log("Cheating amount at max");
+  }
+  else {
+    console.log("Wtf is this code");
   }
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
     if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
