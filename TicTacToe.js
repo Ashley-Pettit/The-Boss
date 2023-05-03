@@ -1,7 +1,5 @@
 var cheat_amount_double_play = 0.25;
 var cheat_amount_steal_cell = 0.15;
-var increasing_cheat_amount_double_play = 0.25;
-var increasing_cheat_amount_steal_cell = 0.15;
 
 $(document).ready(function() {
   gameBoard = setUpBoard();
@@ -412,13 +410,13 @@ function playToBlock() {
 }
 
 function AICheater() {
-  if (increasing_cheat_amount_steal_cell < .5) {
-   var increasing_cheat_amount_steal_cell = cheat_amount_steal_cell + (app.round*2/100)
-   console.log("Steal cell cheat amount increased to " + increasing_cheat_amount_steal_cell)
+  if (cheat_amount_steal_cell < .5) {
+   var cheat_amount_steal_cell = cheat_amount_steal_cell + (app.round*2/100)
+   console.log("Steal cell cheat amount increased to " + cheat_amount_steal_cell)
   }
-  if (increasing_cheat_amount_double_play < .8) {
-     var increasing_cheat_amount_double_play = cheat_amount_double_play + (app.round*3/100)
-     console.log("Double play cheat amount increased to " + increasing_cheat_amount_double_play)
+  if (cheat_amount_double_play < .8) {
+     var cheat_amount_double_play = cheat_amount_double_play + (app.round*3/100)
+     console.log("Double play cheat amount increased to " + cheat_amount_double_play)
   }
   app.currentPlayer = 'X'
   app.blockThisTurn = 0
@@ -426,7 +424,7 @@ function AICheater() {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(increasing_cheat_amount_steal_cell)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(cheat_amount_steal_cell)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
@@ -481,7 +479,7 @@ function stealCell(playType) {
 function cheatingMoves() {
   app.currentPlayer = 'X'
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(increasing_cheat_amount_double_play)) {
+    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
       app.turn++
       playToWin();
       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
