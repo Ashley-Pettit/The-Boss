@@ -221,6 +221,7 @@ function checkForDraw() {
         return false;
     }
   }
+  increaseCheating()
   return true;
 }
 
