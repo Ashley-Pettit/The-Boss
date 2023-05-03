@@ -1,5 +1,5 @@
-var cheat_amount_double_play = .25
-var cheat_amount_steal_cell = .15
+var cheat_amount_double_play = 0.25;
+var cheat_amount_steal_cell = 0.15;
 
 $(document).ready(function() {
   gameBoard = setUpBoard();
