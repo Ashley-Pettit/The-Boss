@@ -1,5 +1,5 @@
 var cheat_amount_double_play = 0.25;
-var cheat_amount_steal_cell = 0.15;
+var cheat_amount_steal_cell = 0.16;
 var increasing_cheat_amount_double_play = 0.25;
 var increasing_cheat_amount_steal_cell = 0.15;
 
@@ -413,7 +413,7 @@ function playToBlock() {
 
 function AICheater() {
   if (increasing_cheat_amount_steal_cell < .5) {
-   var increasing_cheat_amount_steal_cell = cheat_amount_steal_cell + (app.round*3/100)
+   var increasing_cheat_amount_steal_cell = cheat_amount_steal_cell + (app.round*2/100)
    console.log("Steal cell cheat amount increased to " + increasing_cheat_amount_steal_cell)
   }
   app.currentPlayer = 'X'
@@ -476,7 +476,7 @@ function stealCell(playType) {
 
 function cheatingMoves() {
    if (increasing_cheat_amount_double_play < .8) {
-     var increasing_cheat_amount_double_play = cheat_amount_double_play + (app.round*5/100)
+     var increasing_cheat_amount_double_play = cheat_amount_double_play + (app.round*3/100)
      console.log("Double play cheat amount increased to " + increasing_cheat_amount_double_play)
    }
   app.currentPlayer = 'X'
