@@ -425,13 +425,15 @@ function AICheater() {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
-  if (cheat_amount_double_play < .60) {
+  if (cheat_amount_double_play > .60) {
     var cheat_amount_double_play = cheat_amount_double_play + 0.1
     var cheat_amount_steal_cell = cheat_amount_steal_cell + 0.1
     console.log("Cheating amount increased to " + cheat_amount_double_play + " " + cheat_amount_steal_cell);
   }
+  else {
+        console.log("Cheating amount at max");
+  }
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    console.log("Rolling for double play " + app.turn);
     if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
       app.turn++
       playToWin();
@@ -494,11 +496,11 @@ function stealCell(playType) {
 function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
-    console.log("Successful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
+    console.log("Turn " + app.turn + ". Successful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
     return true
   }
   else {
-    console.log("Unsuccessful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
+    console.log("Turn " + app.turn + ". Unsuccessful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
     return false
   }
 }
