@@ -424,7 +424,7 @@ function AICheater() {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(cheat_amount_steal_cell)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(app.cheat_amount_steal_cell)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
