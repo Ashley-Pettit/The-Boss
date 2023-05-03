@@ -1,5 +1,17 @@
-var cheat_amount_double_play = .31
-var cheat_amount_steal_cell = .20
+var app = app || {};
+app.turn = 1;
+app.round = 1;
+app.player1Score = 0;
+app.player2Score = 0;
+app.isRoundInProgress = true;
+app.gameOptionsAlreadyclicked = false;
+app.startingPlayer = null;
+app.currentPlayer = null;
+app.hasBlocked = null;
+app.cheat_amount_double_play = .31
+app.cheat_amount_steal_cell = .20
+
+//App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
 
 $(document).ready(function() {
   gameBoard = setUpBoard();
@@ -34,20 +46,9 @@ $(document).ready(function() {
   $('#home').click(function() {
       location.reload();
   });
-  console.log('%cWelcome to Ash\'s TicTacToe. Cheating enabled. Double play ' + cheat_amount_double_play + ". Steal Cell " + cheat_amount_steal_cell, 'color: red');
+  console.log('%cWelcome to Ash\'s TicTacToe. Cheating enabled. Double play ' + app.cheat_amount_double_play + ". Steal Cell " + app.cheat_amount_steal_cell, 'color: red');
 });
 
-var app = app || {};
-app.turn = 1;
-app.round = 1;
-app.player1Score = 0;
-app.player2Score = 0;
-app.isRoundInProgress = true;
-app.gameOptionsAlreadyclicked = false;
-app.startingPlayer = null;
-app.currentPlayer = null;
-app.hasBlocked = null;
-//App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
 
 function countdownAnimation() {
   $('.game_in_play').fadeIn();
@@ -400,7 +401,7 @@ function AICheater() {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(cheat_amount_steal_cell)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(app.cheat_amount_steal_cell)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
@@ -423,21 +424,25 @@ function AICheater() {
   cheatOnDraw(); //Did the computer win or draw by cheating?
 }
 
-function cheatingMoves() {
-  app.currentPlayer = 'X'
-  if (cheat_amount_double_play < .60) {
-    var cheat_amount_double_play = cheat_amount_double_play + 0.1
-    var cheat_amount_steal_cell = cheat_amount_steal_cell + 0.1
-    console.log("Cheating amount increased to " + cheat_amount_double_play + " " + cheat_amount_steal_cell);
-  }
-  else if (cheat_amount_double_play => .60) {
+function increaseCheating() {
+  if (app.cheat_amount_double_play < .60) {
+      var app.cheat_amount_double_play = app.cheat_amount_double_play + 0.1
+      var app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + 0.1
+      console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
+    }
+  else if (app.cheat_amount_double_play > .60) {
         console.log("Cheating amount at max");
   }
   else {
     console.log("Wtf is this code");
   }
+}
+
+function cheatingMoves() {
+  app.currentPlayer = 'X'
+  increaseCheating()
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
+    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(app.cheat_amount_double_play)) {
       app.turn++
       playToWin();
       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
