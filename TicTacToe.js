@@ -427,8 +427,8 @@ function AICheater() {
 
 function increaseCheating() {
   if (app.cheat_amount_double_play < .60) {
-    app.cheat_amount_double_play = app.cheat_amount_double_play + (app.round/30)
-    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + (app.round/30)
+    app.cheat_amount_double_play = app.cheat_amount_double_play + .05
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .03
     console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
    }
   else if (app.cheat_amount_double_play > .60) {
