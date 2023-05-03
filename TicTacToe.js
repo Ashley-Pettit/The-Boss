@@ -430,13 +430,18 @@ function cheatingMoves() {
     var cheat_amount_steal_cell = cheat_amount_steal_cell + 0.1
     console.log("Cheating amount increased to " + cheat_amount_double_play + " " + cheat_amount_steal_cell);
   }
-  if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    console.log("Rolling for double play " + app.turn);
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
-      app.turn++
-      playToWin();
-      console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
-      return;
+  if (app.turn > 5 && app.turn < 8 && app.isRoundInProgress === true) {
+    if (isComputerAbleToWin() && app.turn > 6 && app.turn < 9 ) {
+      console.log("Looking for cheat win " + app.turn);
+        if (feelLikeCheating(cheat_amount_double_play)) {
+         app.turn++
+         playToWin();
+         console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
+         return;
+      }
+      else {
+          console.log("Looking for cheat win " + app.turn);
+      }
     }
     else if (doesComputerNeedToBlock()) {
       console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
@@ -494,11 +499,11 @@ function stealCell(playType) {
 function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
-    console.log("Successful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
+    console.log("Turn " + app.turn + ". Successful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
     return true
   }
   else {
-    console.log("Unsuccessful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
+    console.log("Turn " + app.turn + ". Unsuccessful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
     return false
   }
 }
