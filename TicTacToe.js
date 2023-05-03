@@ -1,4 +1,3 @@
-
 var app = app || {};
 app.turn = 1;
 app.round = 1;
@@ -9,8 +8,6 @@ app.gameOptionsAlreadyclicked = false;
 app.startingPlayer = null;
 app.currentPlayer = null;
 app.hasBlocked = null;
-app.cheat_amount_double_play = 0.25;
-app.cheat_amount_steal_cell = 0.17;
 
 //App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
 
@@ -26,6 +23,9 @@ $(document).ready(function() {
     }
   });
 
+  var cheat_amount_double_play = 0.25;
+  var cheat_amount_steal_cell = 0.16;
+  
   $(".game_table").click(function(e) {
     var IDOfCellClicked = e.target.id;
     playerMove(IDOfCellClicked);
@@ -47,7 +47,7 @@ $(document).ready(function() {
   $('#home').click(function() {
       location.reload();
   });
-  console.log('%cWelcome to Ash\'s TicTacToe. Cheating enabled. Double play ' + app.cheat_amount_double_play + ". Steal Cell " + app.cheat_amount_steal_cell, 'color: red');
+  console.log('%cWelcome to Ash\'s TicTacToe. Cheating enabled. Double play ' + cheat_amount_double_play + ". Steal Cell " + cheat_amount_steal_cell, 'color: red');
 });
 
 function countdownAnimation() {
@@ -409,13 +409,13 @@ function playToBlock() {
 }
 
 function AICheater() {
-  if (app.cheat_amount_steal_cell < .5) {
-   var app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + (app.round*2/100)
-   console.log("Steal cell cheat amount increased to " + app.cheat_amount_steal_cell)
+  if (cheat_amount_steal_cell < .5) {
+   var cheat_amount_steal_cell = cheat_amount_steal_cell + (app.round*2/100)
+   console.log("Steal cell cheat amount increased to " + cheat_amount_steal_cell)
   }
-  if (app.cheat_amount_double_play < .8) {
-     var app.cheat_amount_double_play = app.cheat_amount_double_play + (app.round*3/100)
-     console.log("Double play cheat amount increased to " + app.cheat_amount_double_play)
+  if (cheat_amount_double_play < .8) {
+     var cheat_amount_double_play = cheat_amount_double_play + (app.round*3/100)
+     console.log("Double play cheat amount increased to " + cheat_amount_double_play)
   }
   app.currentPlayer = 'X'
   app.blockThisTurn = 0
@@ -423,7 +423,7 @@ function AICheater() {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(app.cheat_amount_steal_cell)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(cheat_amount_steal_cell)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
@@ -478,7 +478,7 @@ function stealCell(playType) {
 function cheatingMoves() {
   app.currentPlayer = 'X'
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
-    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(app.cheat_amount_double_play)) {
+    if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
       app.turn++
       playToWin();
       console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
