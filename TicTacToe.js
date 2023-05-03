@@ -426,12 +426,12 @@ function AICheater() {
 }
 
 function increaseCheating() {
-  if (app.cheat_amount_double_play < .60) {
-    app.cheat_amount_double_play = app.cheat_amount_double_play + .05
-    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .03
+  if (app.cheat_amount_double_play < .65) {
+    app.cheat_amount_double_play = app.cheat_amount_double_play + .07
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .04
     console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
    }
-  else if (app.cheat_amount_double_play > .60) {
+  else if (app.cheat_amount_double_play >= .65) {
         console.log("Cheating amount at max");
   }
  else {
