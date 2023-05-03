@@ -383,6 +383,16 @@ function playToBlock() {
   }
 }
 
+function weightedPlay(chance){
+  value =  Math.random().toFixed(2);
+  if (value < chance) {
+    return true
+  }
+  else {
+    return false
+  }
+}
+
 function AICheater() {
   app.currentPlayer = 'X'
   app.blockThisTurn = 0
@@ -412,22 +422,6 @@ function AICheater() {
   }
   cheatingMoves(); // Chance to play twice
   cheatOnDraw(); //Did the computer win or draw by cheating?
-}
-
-function canStealCellAndWin() {
-  for (var x = 0; x < 9; x++) {
-    if (gameBoard[x] === 'O') {
-      gameBoard[x] = 'X'
-      if (checkForWin()) {
-        app.stealWhichCellToWin = x
-        gameBoard[x] = 'O';
-        return true
-      } else {
-        gameBoard[x] = 'O';
-      }
-    }
-  }
-  return false;
 }
 
 function cheatingMoves() {
@@ -464,17 +458,20 @@ function cheatingMoves() {
   }
 }
 
-function cheatOnDraw() {
-  if (checkForDraw() && app.round > 7 && feelLikeCheating(.65)) {
-    for (var i = 0; i < 9; i++) {
-      gameBoard[i] = 'X';
-      $('#' + i).text('X');
+function canStealCellAndWin() {
+  for (var x = 0; x < 9; x++) {
+    if (gameBoard[x] === 'O') {
+      gameBoard[x] = 'X'
+      if (checkForWin()) {
+        app.stealWhichCellToWin = x
+        gameBoard[x] = 'O';
+        return true
+      } else {
+        gameBoard[x] = 'O';
+      }
     }
-    launchWin();
-    alert("I see a BOOORRRING DRAW coming. MEH I'll just take the win! Sucker!");
-    console.log("Turn " + app.turn + ". The computer decided draws are boring and instead decided it would just win instead.")
   }
-  app.currentPlayer = 'O'
+  return false;
 }
 
 function stealCell(playType) {
@@ -490,17 +487,6 @@ function stealCell(playType) {
   launchWin();
 }
 
-function completelyCheatIfHumanCanWin() {
-  for (var i = 0; i < 9; i++) {
-    gameBoard[i] = 'X'; // Take all the cells
-    $('#' + i).text('X').css('background-color','red');
-  }
-  changePlayer();
-  alert("MUHAHAHAHA... YOU THINK YOU WIN????? WRONG I DO! FIND ANOTHER GAME TO WIN! Sucker...");
-  console.log("Turn " + app.turn + ". The player was going to win so the computer took all the cells and won.")
-  launchWin();
-}
-
 function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
@@ -513,12 +499,26 @@ function feelLikeCheating(chance) {
   }
 }
 
-function weightedPlay(chance){
-  value =  Math.random().toFixed(2);
-  if (value < chance) {
-    return true
+function cheatOnDraw() {
+  if (checkForDraw() && app.round > 7 && feelLikeCheating(.65)) {
+    for (var i = 0; i < 9; i++) {
+      gameBoard[i] = 'X';
+      $('#' + i).text('X');
+    }
+    launchWin();
+    alert("I see a BOOORRRING DRAW coming. MEH I'll just take the win! Sucker!");
+    console.log("Turn " + app.turn + ". The computer decided draws are boring and instead decided it would just win instead.")
   }
-  else {
-    return false
+  app.currentPlayer = 'O'
+}
+
+function completelyCheatIfHumanCanWin() {
+  for (var i = 0; i < 9; i++) {
+    gameBoard[i] = 'X'; // Take all the cells
+    $('#' + i).text('X').css('background-color','red');
   }
+  changePlayer();
+  alert("MUHAHAHAHA... YOU THINK YOU WIN????? WRONG I DO! FIND ANOTHER GAME TO WIN! Sucker...");
+  console.log("Turn " + app.turn + ". The player was going to win so the computer took all the cells and won.")
+  launchWin();
 }
