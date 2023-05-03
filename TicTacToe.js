@@ -440,7 +440,6 @@ function increaseCheating() {
 
 function cheatingMoves() {
   app.currentPlayer = 'X'
-  increaseCheating()
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
     if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(app.cheat_amount_double_play)) {
       app.turn++
@@ -509,6 +508,7 @@ function feelLikeCheating(chance) {
   }
   else {
     console.log("Turn " + app.turn + ". Unsuccessful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
+    increaseCheating()
     return false
   }
 }
