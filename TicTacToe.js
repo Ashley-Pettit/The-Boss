@@ -1,3 +1,19 @@
+
+var app = app || {};
+app.turn = 1;
+app.round = 1;
+app.player1Score = 0;
+app.player2Score = 0;
+app.isRoundInProgress = true;
+app.gameOptionsAlreadyclicked = false;
+app.startingPlayer = null;
+app.currentPlayer = null;
+app.hasBlocked = null;
+app.cheat_amount_double_play = 0.25;
+app.cheat_amount_steal_cell = 0.16;
+
+//App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
+
 $(document).ready(function() {
   gameBoard = setUpBoard();
   $('.difficulty_button').click(function(e) {
@@ -33,23 +49,6 @@ $(document).ready(function() {
   });
   console.log('%cWelcome to Ash\'s TicTacToe. Cheating enabled. Double play ' + app.cheat_amount_double_play + ". Steal Cell " + app.cheat_amount_steal_cell, 'color: red');
 });
-
-
-var app = app || {};
-app.turn = 1;
-app.round = 1;
-app.player1Score = 0;
-app.player2Score = 0;
-app.isRoundInProgress = true;
-app.gameOptionsAlreadyclicked = false;
-app.startingPlayer = null;
-app.currentPlayer = null;
-app.hasBlocked = null;
-app.cheat_amount_double_play = 0.25;
-app.cheat_amount_steal_cell = 0.16;
-
-//App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
-
 
 function countdownAnimation() {
   $('.game_in_play').fadeIn();
