@@ -439,9 +439,6 @@ function cheatingMoves() {
          console.log("Turn " + app.turn + ". The computer snuck victory with a dirty double play.");
          return;
       }
-      else {
-          console.log("Looking for cheat win " + app.turn);
-      }
     }
     else if (doesComputerNeedToBlock()) {
       console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
