@@ -37,7 +37,6 @@ $(document).ready(function() {
   console.log('%cWelcome to Ash\'s TicTacToe. Cheating enabled. Double play ' + cheat_amount_double_play + ". Steal Cell " + cheat_amount_steal_cell, 'color: red');
 });
 
-
 var app = app || {};
 app.turn = 1;
 app.round = 1;
@@ -49,7 +48,6 @@ app.startingPlayer = null;
 app.currentPlayer = null;
 app.hasBlocked = null;
 //App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
-
 
 function countdownAnimation() {
   $('.game_in_play').fadeIn();
@@ -388,6 +386,7 @@ function playToBlock() {
 function AICheater() {
   app.currentPlayer = 'X'
   app.blockThisTurn = 0
+  var cheat_amount_steal_cell += .01
   if (isComputerAbleToWin()) {
     playToWin();
     return;
@@ -431,21 +430,9 @@ function canStealCellAndWin() {
   return false;
 }
 
-function stealCell(playType) {
-  gameBoard[app.stealWhichCellToWin] = 'X';
-  if (app.blockThisTurn === 1) { //If first pay not used in win then hide it
-    gameBoard[app.cheatBlockAt] = null;
-    $('#' + app.cheatBlockAt).text('');
-  }
-  for (var i = 0; i < 3; i++) {
-    $("#" + winningCells[i]).css("background-color", "red");
-    $("#" + winningCells[i]).text("X");
-  }
-  launchWin();
-}
-
 function cheatingMoves() {
   app.currentPlayer = 'X'
+  var cheat_amount_double_play += .01
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
     if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(cheat_amount_double_play)) {
       app.turn++
@@ -488,6 +475,19 @@ function cheatOnDraw() {
     console.log("Turn " + app.turn + ". The computer decided draws are boring and instead decided it would just win instead.")
   }
   app.currentPlayer = 'O'
+}
+
+function stealCell(playType) {
+  gameBoard[app.stealWhichCellToWin] = 'X';
+  if (app.blockThisTurn === 1) { //If first pay not used in win then hide it
+    gameBoard[app.cheatBlockAt] = null;
+    $('#' + app.cheatBlockAt).text('');
+  }
+  for (var i = 0; i < 3; i++) {
+    $("#" + winningCells[i]).css("background-color", "red");
+    $("#" + winningCells[i]).text("X");
+  }
+  launchWin();
 }
 
 function completelyCheatIfHumanCanWin() {
