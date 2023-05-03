@@ -10,7 +10,7 @@ app.startingPlayer = null;
 app.currentPlayer = null;
 app.hasBlocked = null;
 app.cheat_amount_double_play = 0.25;
-app.cheat_amount_steal_cell = 0.16;
+app.cheat_amount_steal_cell = 0.17;
 
 //App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
 
