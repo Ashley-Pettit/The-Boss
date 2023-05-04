@@ -8,8 +8,8 @@ app.gameOptionsAlreadyclicked = false;
 app.startingPlayer = null;
 app.currentPlayer = null;
 app.hasBlocked = null;
-app.cheat_amount_double_play = .25
-app.cheat_amount_steal_cell = .15
+app.cheat_amount_double_play = .25;
+app.cheat_amount_steal_cell = .15;
 
 //App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
 
@@ -427,11 +427,11 @@ function AICheater() {
 
 function increaseCheating() {
   if (app.cheat_amount_double_play < .65) {
-    app.cheat_amount_double_play = app.cheat_amount_double_play + .07
+    app.cheat_amount_double_play = app.cheat_amount_double_play + .08
     app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .04
     console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
    }
-  else if (app.cheat_amount_double_play >= .65) {
+  else if (app.cheat_amount_double_play >= .80) {
         console.log("Cheating amount at max");
   }
  else {
@@ -515,7 +515,7 @@ function feelLikeCheating(chance) {
 }
 
 function cheatOnDraw() {
-  if (checkForDraw() && app.round > 7 && feelLikeCheating(.65)) {
+  if (checkForDraw() && app.round > 7 && feelLikeCheating(.30)) {
     for (var i = 0; i < 9; i++) {
       gameBoard[i] = 'X';
       $('#' + i).text('X');
