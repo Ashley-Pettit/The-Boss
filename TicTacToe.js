@@ -460,7 +460,7 @@ function cheatingMoves() {
     }
     else if (doesComputerNeedToBlock()) {
       console.log('%c2 way win detected. Cheating odds have been drastically increased.', 'color: red')
-      if (canStealCellAndWin() && feelLikeCheating(.50)) {
+      if (canStealCellAndWin() && feelLikeCheating(.30)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
