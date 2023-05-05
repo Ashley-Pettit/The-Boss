@@ -388,9 +388,11 @@ function playToBlock() {
 function weightedPlay(chance){
   value =  Math.random().toFixed(2);
   if (value < chance) {
+      console.log("Turn " + app.turn + ". Rolling for weighted played - Success. " + value + " " + chance)
     return true
   }
   else {
+    console.log("Turn " + app.turn + ". Rolling for weighted played - Unsuccessful. " + value + " " + chance)
     return false
   }
 }
