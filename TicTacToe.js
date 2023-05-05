@@ -412,7 +412,7 @@ function AICheater() {
     playToBlock();
     app.blockThisTurn = 1
   }
-  else if ((gameBoard[4] === null) && weightedPlay(99/(App.turn)))  {
+  else if ((gameBoard[4] === null) && weightedPlay(99/(app.turn)))  {
     gameBoard[4] = app.currentPlayer;
     $('#' + 4).prepend(app.currentPlayer);
     changePlayer();
