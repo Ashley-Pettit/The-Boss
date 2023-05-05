@@ -472,13 +472,13 @@ function cheatingMoves() {
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.90)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.80)) {
         // This is here in case the first roll was a fail and the computer couldn't win via playing twice
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
       }
-      else if (doesComputerNeedToBlock() && feelLikeCheating(.98)) {
+      else if (doesComputerNeedToBlock() && feelLikeCheating(.20)) {
         app.turn++;
         app.currentPlayer = 'X'
         playToBlock(); //If unable to instantly win then block the two win scenarios.
