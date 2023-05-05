@@ -414,7 +414,8 @@ function AICheater() {
     playToBlock();
     app.blockThisTurn = 1
   }
-  else if ((gameBoard[4] === null) && weightedPlay(.99/(app.round)))  {
+  else if ((gameBoard[4] === null) && weightedPlay(.95/((app.round/2.5))))  {
+    // The longer the game goes on the less the computer preferences the center. This leads to more 2 way win cheating
     gameBoard[4] = app.currentPlayer;
     $('#' + 4).prepend(app.currentPlayer);
     changePlayer();
