@@ -430,8 +430,8 @@ function AICheater() {
 
 function increaseCheating() {
   if (app.cheat_amount_double_play < .85) {
-    app.cheat_amount_double_play = app.cheat_amount_double_play + .20
-    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .10
+    app.cheat_amount_double_play = app.cheat_amount_double_play + .10
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .08
     console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
    }
   else if (app.cheat_amount_double_play >= .85) {
@@ -441,7 +441,7 @@ function increaseCheating() {
 
 function decreaseCheating() {
    if (app.cheat_amount_double_play > .30) {
-     app.cheat_amount_double_play = app.cheat_amount_double_play - .30
+     app.cheat_amount_double_play = app.cheat_amount_double_play - .3
    }
    if (app.cheat_amount_steal_cell > .15) {
     app.cheat_amount_steal_cell = app.cheat_amount_steal_cell - .15
@@ -465,10 +465,16 @@ function cheatingMoves() {
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
       }
-      else if (isComputerAbleToWin() && feelLikeCheating(.99)){
+      else if (isComputerAbleToWin() && feelLikeCheating(1)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
+        return;
+      }
+      else if (canStealCellAndWin() && feelLikeCheating(.90)) {
+        // This is here in case the first roll was a fail and the computer couldn't win via playing twice
+        stealCell();
+        console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
       }
       else if (doesComputerNeedToBlock() && feelLikeCheating(.98)) {
