@@ -414,7 +414,7 @@ function AICheater() {
     playToBlock();
     app.blockThisTurn = 1
   }
-  else if ((gameBoard[4] === null) && weightedPlay(.95/((app.round/2.5))))  {
+  else if ((gameBoard[4] === null) && weightedPlay(.95/((app.round/3.5))))  {
     // The longer the game goes on the less the computer preferences the center. This leads to more 2 way win cheating
     gameBoard[4] = app.currentPlayer;
     $('#' + 4).prepend(app.currentPlayer);
@@ -452,6 +452,7 @@ function decreaseCheating() {
 function cheatingMoves() {
   app.currentPlayer = 'X'
   if (((app.turn > 5) && app.turn < 8) && app.isRoundInProgress === true) {
+    // cheating before turn 5 or after turn 8 is too obvious
     if (isComputerAbleToWin() && ((app.turn > 6) && app.turn < 9) && feelLikeCheating(app.cheat_amount_double_play)) {
       app.turn++
       playToWin();
