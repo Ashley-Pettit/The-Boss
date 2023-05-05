@@ -428,17 +428,20 @@ function AICheater() {
 }
 
 function increaseCheating() {
-  if (app.cheat_amount_double_play < .65) {
-    app.cheat_amount_double_play = app.cheat_amount_double_play + .08
-    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .04
+  if (app.cheat_amount_double_play < .80) {
+    app.cheat_amount_double_play = app.cheat_amount_double_play + .15
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .10
     console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
    }
   else if (app.cheat_amount_double_play >= .80) {
         console.log("Cheating amount at max");
   }
- else {
-  console.log("Wtf is this code");
- }
+}
+
+function decreaseCheating() {
+    app.cheat_amount_double_play = app.cheat_amount_double_play - .25
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell - .20
+    console.log("Cheating amount decreased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
 }
 
 function cheatingMoves() {
@@ -451,7 +454,7 @@ function cheatingMoves() {
       return;
     }
     else if (doesComputerNeedToBlock()) {
-      console.log('%2 way win detected. Cheating odds have been drastically increased.', 'color: red')
+      console.log('%c2 way win detected. Cheating odds have been drastically increased.', 'color: red')
       if (isComputerAbleToWin() && feelLikeCheating(.65)){
         app.turn++
         playToWin();
@@ -507,6 +510,7 @@ function feelLikeCheating(chance) {
   value =  Math.random().toFixed(2);
   if (value < chance) {
     console.log("Turn " + app.turn + ". Successful cheat roll. Rolled " + value + ". Required was less than " + chance + ".")
+    decreaseCheating()
     return true
   }
   else {
