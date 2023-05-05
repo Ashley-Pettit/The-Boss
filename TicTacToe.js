@@ -428,20 +428,24 @@ function AICheater() {
 }
 
 function increaseCheating() {
-  if (app.cheat_amount_double_play < .80) {
-    app.cheat_amount_double_play = app.cheat_amount_double_play + .15
+  if (app.cheat_amount_double_play < .85) {
+    app.cheat_amount_double_play = app.cheat_amount_double_play + .20
     app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .10
     console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
    }
-  else if (app.cheat_amount_double_play >= .80) {
+  else if (app.cheat_amount_double_play >= .85) {
         console.log("Cheating amount at max");
   }
 }
 
 function decreaseCheating() {
-    app.cheat_amount_double_play = app.cheat_amount_double_play - .25
-    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell - .20
-    console.log("Cheating amount decreased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
+   if (app.cheat_amount_double_play > .30) {
+     app.cheat_amount_double_play = app.cheat_amount_double_play - .30
+   }
+   if (app.cheat_amount_steal_cell > .15) {
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell - .15
+   }
+   console.log("Cheating amount decreased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
 }
 
 function cheatingMoves() {
@@ -455,18 +459,18 @@ function cheatingMoves() {
     }
     else if (doesComputerNeedToBlock()) {
       console.log('%c2 way win detected. Cheating odds have been drastically increased.', 'color: red')
-      if (isComputerAbleToWin() && feelLikeCheating(.65)){
+      if (canStealCellAndWin() && feelLikeCheating(.50)) {
+        stealCell();
+        console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
+        return;
+      }
+      else if (isComputerAbleToWin() && feelLikeCheating(.99)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.999)) {
-        stealCell();
-        console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
-        return;
-      }
-      else if (doesComputerNeedToBlock() && feelLikeCheating(.10)) {
+      else if (doesComputerNeedToBlock() && feelLikeCheating(.98)) {
         app.turn++;
         app.currentPlayer = 'X'
         playToBlock(); //If unable to instantly win then block the two win scenarios.
