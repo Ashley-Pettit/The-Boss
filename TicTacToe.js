@@ -412,7 +412,7 @@ function AICheater() {
     playToBlock();
     app.blockThisTurn = 1
   }
-  else if ((gameBoard[4] === null) && weightedPlay(Math.pow(.08, 1/app.turn)))  {
+  else if ((gameBoard[4] === null) && weightedPlay(99/(App.turn)))  {
     gameBoard[4] = app.currentPlayer;
     $('#' + 4).prepend(app.currentPlayer);
     changePlayer();
@@ -449,14 +449,14 @@ function cheatingMoves() {
       return;
     }
     else if (doesComputerNeedToBlock()) {
-      console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
+      console.log('%2 way win detected. Cheating odds have been drastically increased.', 'color: red')
       if (isComputerAbleToWin() && feelLikeCheating(.65)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.99)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.999)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
