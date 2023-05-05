@@ -428,7 +428,8 @@ function AICheater() {
     playToBlock();
     app.blockThisTurn = 1
   }
-  else if ((gameBoard[4] === null) && weightedPlay(Math.pow(.08, 1/app.turn)))  {
+  else if ((gameBoard[4] === null) && weightedPlay(99/(App.turn)))  {
+    //The bot will nearly always take the center on the first round. It then has diminishing chances of preferencing the center
     gameBoard[4] = app.currentPlayer;
     $('#' + 4).prepend(app.currentPlayer);
     changePlayer();
@@ -488,14 +489,14 @@ function cheatingMoves() {
         return;
       }
     else if (doesComputerNeedToBlock()) {
-      console.log('%cWARNING - 2 way win detected. Cheating odds have been drastically increased.', 'color: red')
-      if (isComputerAbleToWin() && feelLikeCheating(.85)){
+      console.log('%c2 way win detected. Cheating odds have been drastically increased.', 'color: red')
+      if (isComputerAbleToWin() && feelLikeCheating(.75)){
         app.turn++
         playToWin();
         console.log("Turn " + app.turn + ". A sneaky double play was used for an instant win.");
         return;
       }
-      else if (canStealCellAndWin() && feelLikeCheating(.90)) {
+      else if (canStealCellAndWin() && feelLikeCheating(.99)) {
         stealCell();
         console.log("Turn " + app.turn + ". With impending doom the computer had no choice but to steal cell " + app.stealWhichCellToWin +  " to win.");
         return;
@@ -513,7 +514,7 @@ function cheatingMoves() {
 
 function cheatOnDraw() {
 
-  if (checkForDraw() && app.round > 6 && feelLikeCheating(.35)) {
+  if (checkForDraw() && app.round > 6 && feelLikeCheating(.30)) {
     for (var i = 0; i < 9; i++) {
       gameBoard[i] = 'X';
       $('#' + i).text('X');
@@ -551,9 +552,11 @@ function feelLikeCheating(chance) {
 function weightedPlay(chance){
   value =  Math.random().toFixed(2);
   if (value < chance) {
+    console.log("Rolling for weighted play. Success! ", value, chance)
     return true
   }
   else {
+    console.log("Rolling for weighted play. Not successful! ", value, chance)
     return false
   }
 }
