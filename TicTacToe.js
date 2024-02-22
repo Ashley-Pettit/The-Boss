@@ -8,8 +8,8 @@ app.gameOptionsAlreadyclicked = false;
 app.startingPlayer = null;
 app.currentPlayer = null;
 app.hasBlocked = null;
-app.cheat_amount_double_play = .25;
-app.cheat_amount_steal_cell = .15;
+app.cheat_amount_double_play = .35;
+app.cheat_amount_steal_cell = .25;
 
 //App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
 
@@ -430,8 +430,8 @@ function AICheater() {
 
 function increaseCheating() {
   if (app.cheat_amount_double_play < .85) {
-    app.cheat_amount_double_play = app.cheat_amount_double_play + .10
-    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .08
+    app.cheat_amount_double_play = app.cheat_amount_double_play + .12
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell + .10
     console.log("Cheating amount increased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
    }
   else if (app.cheat_amount_double_play >= .85) {
@@ -441,10 +441,10 @@ function increaseCheating() {
 
 function decreaseCheating() {
    if (app.cheat_amount_double_play > .30) {
-     app.cheat_amount_double_play = app.cheat_amount_double_play - .3
+     app.cheat_amount_double_play = app.cheat_amount_double_play - .2
    }
    if (app.cheat_amount_steal_cell > .15) {
-    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell - .15
+    app.cheat_amount_steal_cell = app.cheat_amount_steal_cell - .10
    }
    console.log("Cheating amount decreased to " + app.cheat_amount_double_play + " " + app.cheat_amount_steal_cell);
 }
