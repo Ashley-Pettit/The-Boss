@@ -418,7 +418,7 @@ function AICheater() {
     playToWin();
     return;
   }
-  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(.15)) {
+  else if (app.turn > 7 && canStealCellAndWin() && feelLikeCheating(.35)) {
     console.log("Turn " + app.turn + ". The computer stole cell " + app.stealWhichCellToWin +  " to win.");
     app.turn++
     stealCell()
@@ -514,13 +514,13 @@ function cheatingMoves() {
 
 function cheatOnDraw() {
 
-  if (checkForDraw() && app.round > 6 && feelLikeCheating(.30)) {
+  if (checkForDraw() && app.round > 5 && feelLikeCheating(.99)) {
     for (var i = 0; i < 9; i++) {
       gameBoard[i] = 'X';
       $('#' + i).text('X');
     }
     launchWin();
-    alert("I see a BOOORRRING DRAW coming. MEH I'll just take the win! Sucker!");
+    alert("I see a BOOORRRING DRAW coming. MEH I'll just take the win! No $10 for you. Sucker!");
     console.log("Turn " + app.turn + ". The computer decided draws are boring and instead decided it would just win instead.")
   }
   app.currentPlayer = 'O'
