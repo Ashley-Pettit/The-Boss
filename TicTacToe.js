@@ -46,7 +46,7 @@ app.gameOptionsAlreadyclicked = false;
 app.startingPlayer = null;
 app.currentPlayer = null;
 app.hasBlocked = null;
-//App is designed to allow 'class' type variables to minimise the need for unnecessary parameter passing.
+//App is designed to allow 'class' type varables to minimise the need for unnecessary parameter passing.
 
 
 function countdownAnimation() {
